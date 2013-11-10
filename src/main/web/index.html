@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html><head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+
+<link type="text/css" href="http://cdn.leafletjs.com/leaflet-0.6/leaflet.css" rel="stylesheet">
+<link rel="stylesheet" href="lib/Control.OSMGeocoder.css" />
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/proj4js/1.1.0/proj4js-compressed.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/proj4js/1.1.0/defs/EPSG21781.js"></script>
+
+<script type="text/javascript" src="http://www.gis.zh.ch/dokus/opendata/leaflet/lib/leaflet.js"></script>
+<script type="text/javascript" src="http://www.gis.zh.ch/dokus/opendata/leaflet/lib/kartena-proj4leaflets.js"></script>
+
+<script type="text/javascript" src="lib/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="lib/Control.OSMGeocoder.js"></script>
+<script type="text/javascript" src="lib/d3.v3.min.js"></script>
+
+<script type="text/javascript" src="maputil.js"></script>
+<script type="text/javascript" src="dynamicdata.js"></script>
+<script type="text/javascript" src="utils.js"></script>
+<script type="text/javascript" src="gemeinden.js"></script>
+
+<script src="data/iface.js"></script>
+
+<title>OpenData HackNight -- biz -- Grundkarte</title>
+  </head>
+  <body>
+
+    <script>
+      Loader.all(function(data) {
+      var firmen = new Firmen(data['firmen']);
+      var gemeinden = new Gemeinden(data['gemeinden']);
+      });
+
+      Loader.noga(function(data) {
+      console.info(data);
+      });
+    </script>
+  </body>
+</html>

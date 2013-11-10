@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html><head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+
+<link type="text/css" href="http://cdn.leafletjs.com/leaflet-0.6/leaflet.css" rel="stylesheet">
+<link rel="stylesheet" href="lib/Control.OSMGeocoder.css" />
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/proj4js/1.1.0/proj4js-compressed.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/proj4js/1.1.0/defs/EPSG21781.js"></script>
+
+<script type="text/javascript" src="http://www.gis.zh.ch/dokus/opendata/leaflet/lib/leaflet.js"></script>
+<script type="text/javascript" src="http://www.gis.zh.ch/dokus/opendata/leaflet/lib/kartena-proj4leaflets.js"></script>
+
+<script type="text/javascript" src="lib/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="lib/Control.OSMGeocoder.js"></script>
+<script type="text/javascript" src="lib/d3.v3.min.js"></script>
+
+<script type="text/javascript" src="maputil.js"></script>
+<script type="text/javascript" src="dynamicdata.js"></script>
+<script type="text/javascript" src="utils.js"></script>
+<script type="text/javascript" src="gemeinden.js"></script>
+<script src="data/iface.js"></script>
+
+<script>
+    Loader.all(function(data) {
+    var firmen = new Firmen(data['firmen']);
+    var gemeinden = new Gemeinden(data['gemeinden']);
+    });
+
+    Loader.noga(function(data) {
+    console.info(data);
+    });
+</script>
+<title>OpenData HackNight -- biz -- Grundkarte</title>
+  </head>
+  <body>
+
+
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body onLoad="initNogaColors(); initMap(); showYearValue(2013); initGemeinden();">
+
+
+
+
+
+
+<table id="maptable" width="100%">
+<tr><td width="8%" valign="top">
+
+  <table>
+    <tr><td>
+        Verteilung f&uuml;r das Jahr <b><span id="yearValue">2013</span></b>
+    </td></tr>
+    <tr><td>
+        <input id="yearRange" type="range" min="1930" max="2013" value="2013" onChange="showYearValue(this.value);" />
+    </td></tr>
+    <tr><td>
+        <input id="rangeButton" type="button" value="start" onClick="changeInterval()">
+    </td></tr>
+    <tr><td>
+        <input type="radio" name="firmaAllFoDi" value="no" checked onChange="changeFirmenSelection(0);">Alle Firmen<br>
+        <input type="radio" name="firmaAllFoDi" value="no" onChange="changeFirmenSelection(1);">Firmengr&uuml;ndungen<br>
+        <input type="radio" name="firmaAllFoDi" value="no" onChange="changeFirmenSelection(2);">Firmenaufl&ouml;sungen<br>
+    </td></tr>
+    <tr><td><hr></td></tr>
+    <tr><td>
+        <input type="radio" name="firmaAllFoDi" value="no" onChange="changeFirmenSelection(3);">Firmenumz&uuml;ge<br>
+    </td></tr>
+    <tr><td><hr></td></tr>
+    <tr><td>
+        <input type="radio" name="nogayn" value="no" checked onChange="changeNogaSelection(false);">Alle Firmen<br>
+        <input type="radio" name="nogayn" value="yes" onChange="changeNogaSelection(true);">Nach NOGA<br>
+    </td></tr>
+    <tr><td align="center" id="nogaSelA" title="Landwirtschaft" onClick="nogaDisp.toggle(this);">A <img src="img/tractor.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelB" title="Bergbau" onClick="nogaDisp.toggle(this);">B <img src="img/workers.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelC" title="Verarbeitendes Gewerbe, Herstellung von Waren" onClick="nogaDisp.toggle(this);">C <img src="img/bread.png" width="20" height="20"></td></tr>
+
+
+
+    <tr><td align="center" id="nogaSelD" title="Energieversorgung" onClick="nogaDisp.toggle(this);">D <img src="img/sun.png" width="20" height="20"</td></tr>
+                                                                                                           <tr><td align="center" id="nogaSelE" title="Wasserversorgung" onClick="nogaDisp.toggle(this);">E <img src="img/water.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelF" title="Baugewerbe" onClick="nogaDisp.toggle(this);">F <img src="img/hammer.png" width="20" height="20"></td></tr>
+
+
+
+
+    <tr><td align="center" id="nogaSelG" title="Handel, Instandhaltung und Reparatur von Motorfahrzeugen" onClick="nogaDisp.toggle(this);">G <img src="img/automotive.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelH" title="Verkehr und Lagerei" onClick="nogaDisp.toggle(this);">H <img src="img/delivery_food.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelI" title="Gastgewerbe, Beherbergung" onClick="nogaDisp.toggle(this);">I <img src="img/hotel.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelJ" title="Information und Kommunikation" onClick="nogaDisp.toggle(this);">J <img src="img/notebook.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelK" title="Erbringung von Finanz- und Versicherungsdienstleistungen" onClick="nogaDisp.toggle(this);">K <img src="img/banknotes.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelL" title="Grundst&uuml;cks und Wohnungswesen" onClick="nogaDisp.toggle(this);">L <img src="img/home.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelM" title="Erbringung von freiberuflichen, wissenschaftlichen und technischen Dienstleistungen" onClick="nogaDisp.toggle(this);">M <img src="img/physics.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelN" title="Erbringung von sonstigen wirtschaftlichen Dienstleistungen" onClick="nogaDisp.toggle(this);">N <img src="img/online_support.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelO" title="&Ouml;ffentliche Verwaltung, Verteidigung; Sozialversicherung" onClick="nogaDisp.toggle(this);">O <img src="img/police.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelP" title="Erziehung und Unterricht" onClick="nogaDisp.toggle(this);">P <img src="img/student.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelQ" title="Gesundheits- und Sozialwesen" onClick="nogaDisp.toggle(this);">Q <img src="img/nurse.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelR" title="Kunst, Unterhaltung und Erholung" onClick="nogaDisp.toggle(this);">R <img src="img/theatre_masks.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelS" title="Erbringung von sonstigen Dienstleistungen" onClick="nogaDisp.toggle(this);">S <img src="img/hair_dryer.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelT" title="Private Haushalte mit Hauspersonal; Herstellung von Waren und Erbringung von Dienstleistungen durch private Haushalte f&uuml;r den Eigenbedarf ohne ausgepr&auml;gten Schwerpunkt" onClick="nogaDisp.toggle(this);">T <img src="img/lamp.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelU" title="Exterritoriale Organisationen und K&ouml;rperschaften" onClick="nogaDisp.toggle(this);">U <img src="img/reddit.png" width="20" height="20"></td></tr>
+    <tr><td><font size="-1">Icons by <a href="http://icons8.com/">icons8.com/</a></font></td></tr>
+  </table>
+</td>
+
+<td width="92%" id="mapcell">
+
+<script type="text/javascript">
+  var cwidth = document.getElementById('mapcell').offsetWidth;
+  document.write('<div id="map" style="width: ' + cwidth + 'px; height: ' + (window.innerHeight-50) + 'px"></div>');
+</script>
+
+</td>
+</tr>
+</table>
+
+
+
+</body></html>

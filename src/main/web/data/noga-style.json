@@ -1,0 +1,128 @@
+[
+    {
+        "code":"A0",
+        "title" : "Landwirtschaft",
+        "colour" : "#33CC33",
+        "icon" : "tractor.png"
+    },
+    {
+        "code":"B0",
+        "title" : "Bergbau",
+        "colour" : "#CC6600",
+        "icon" : "workers.png"
+    },
+    {
+        "code":"C0",
+        "title" : "Verarbeitendes Gewerbe, Herstellung von Waren",
+        "colour" : "#FFC04D",
+        "icon" : "bread.png"
+    },
+    {
+        "code":"D0",
+        "title" : "Energieversorgung",
+        "colour" : "#FFFF00",
+        "icon" : "sun.png"
+    },
+    {
+        "code":"E0",
+        "title" : "Wasserversorgung",
+        "colour" : "#66FFFF",
+        "icon" : "water.png"
+    },
+    {
+        "code":"F0",
+        "title" : "Baugewerbe",
+        "colour" : "#FF9900"
+        "icon" : "hammer.png"
+    },
+    {
+        "code":"G0",
+        "title" : "Handel, Instandhaltung und Reparatur von Motorfahrzeugen",
+        "colour" : "#D99CD6",
+        "icon" : "automotive.png"
+    },
+    {
+        "code":"H0",
+        "title" : "Verkehr und Lagerei",
+        "colour" : "#0000FF",
+        "icon" : "delivery_food.png"
+    },
+    {
+        "code":"I0",
+        "title" : "Gastgewerbe, Beherbergung",
+        "colour" : "#FF33CC",
+        "icon" : "hotel.png"
+    },
+    {
+        "code":"J0",
+        "title" : "Information und Kommunikation",
+        "colour" : "#43BFBF",
+        "icon" : "notebook.png"
+    },
+    {
+        "code":"K0",
+        "title" : "Erbringung von Finanz- und Versicherungsdienstleistungen",
+        "colour" : "#00FF99",
+        "icon" : "banknotes.png"
+    },
+    {
+        "code":"L0",
+        "title" : "Grundstücks und Wohnungswesen",
+        "colour" : "#C7CB77",
+        "icon" : "home.png"
+    },
+    {
+        "code":"M0",
+        "title" : "Erbringung von freiberuflichen, wissenschaftlichen und technischen Dienstleistungen"
+        "colour": "#8F8FFF",
+        "icon" : "physics.png"
+    },
+    {
+        "code":"N0",
+        "title" : "Erbringung von sonstigen wirtschaftlichen Dienstleistungen",
+        "colour" : "#FFFF8F",
+        "icon" : "online_support.png"
+    },
+    {
+        "code":"O0",
+        "title" : "Öffentliche Verwaltung, Verteidigung; Sozialversicherung",
+        "colour" : "#CCFFCC",
+        "icon" : "police.png"
+    },
+    {
+        "code":"P0",
+        "title" : "Erziehung und Unterricht",
+        "colour" : "#99FF33",
+        "icon" : "student.png"
+    },
+    {
+        "code":"Q0",
+        "title" : "Gesundheits- und Sozialwesen",
+        "colour" : "#FF0000",
+        "icon" : "nurse.png"
+    },
+    {
+        "code":"R0",
+        "title" : "Kunst, Unterhaltung und Erholung",
+        "colour" : "#FF99CC",
+        "icon" : "theatre_masks.png"
+    },
+    {
+        "code":"S0",
+        "title" : "Erbringung von sonstigen Dienstleistungen",
+        "colour" : "#DB8D73",
+        "icon" : "hair_dryer.png"
+    },
+    {
+        "code":"T0",
+        "title" : "Private Haushalte mit Hauspersonal; Herstellung von Waren und Erbringung von Dienstleistungen durch private Haushalte für den Eigenbedarf ohne ausgeprägten Schwerpunkt",
+        "colour" : "#00FF00",
+        "icon" : "lamp.png"
+    },
+    {
+        "code":"U0",
+        "title": "Exterritoriale Organisationen und Körperschaften",
+        "colour" : "#FF00FF",
+        "icon" : "reddit.png"
+    }
+]
