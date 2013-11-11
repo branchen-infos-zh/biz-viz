@@ -11,7 +11,7 @@ function Map() {
 //  var wmsUrl = 'http://wms.zh.ch/waldUPZH',
 //  wmsLayers = 'dtm,wald,baeche,seen,bodenbedeckung,upcat';
 
-    var _pointsCache = null;
+    var _firmenLayer = L.layerGroup();
 
     this.initialize = function() {
         var wmsUrl = 'http://wms.zh.ch/upwms', wmsLayers = 'upwms';
@@ -22,20 +22,25 @@ function Map() {
                 origin: [420000, 350000]
             });
 
+        var map = new L.Map('map', {
+            crs: epsg21781
+        });
+
         var tilelayer = L.tileLayer.wms(wmsUrl, {
             layers: wmsLayers,
             format: 'image/jpeg',
             version: '1.3.0',
             attribution: "<a href='http://gis.zh.ch' target='_blank'>GISZH</a>"
         });
-
-        var map = new L.Map('map', {
-            crs: epsg21781
-        });
-
         map.addLayer(tilelayer);
         map.setView([47.37688, 8.53668], 9);
         map.setZoom(10);
+
+        var overlays = {
+            "Firmen": _firmenLayer
+        };
+        map.addControl(L.control.layers(overlays));
+        map.addLayer(_firmenLayer);
 
         var osmGeocoder = new L.Control.OSMGeocoder();
         map.addControl(osmGeocoder);
@@ -47,46 +52,8 @@ function Map() {
         return _map;
     }
 
-    this.clearMap = function() {
-        if(_pointsCache != null) {
-            for(var i = 0; i < _pointsCache.length; i++) {
-                _map.removeLayer(_pointsCache[i]);
-            }
-            _pointsCache = null;
-        }
-    }
-
-    this.draw = function(points) {
-        _this.clearMap();
-        for(var i = 0; i < points.length; i++) {
-            points[i].addTo(_map);
-        }
-        _pointsCache = points;
-    }
-}
-
-function showPoints(date) {
-    for (p = 0; p < points.length; p++) {
-        if ((points[p].von <= date) && (points[p].bis >= date)) {
-            points[p].circle.addTo(map);
-        } else {
-            map.removeLayer(points[p].circle);
-        }
-    }
-}
-
-function showAllPoints() {
-    for (p = 0; p < points.length; p++) {
-        if (window.nogaDisp.check(points[p].noga)) {
-            points[p].circle.addTo(map);
-        } else {
-            map.removeLayer(points[p].circle);
-        }
-    }
-}
-function removeAllPoints() {
-    for (p = 0; p < points.length; p++) {
-        map.removeLayer(points[p].circle);
+    this.getFirmenLayer = function() {
+        return _firmenLayer;
     }
 }
 

@@ -38,15 +38,35 @@
       <div class="panel_container">
         <div class="controls">
           <div class="defaults">
-            <input type="radio" name="firmaAllFoDi" value="no" checked onChange="changeFirmenSelection(0);"> Alle Firmen<br>
-	    <input type="radio" name="firmaAllFoDi" value="no" onChange="changeFirmenSelection(1);"> Firmengr&uuml;ndungen<br>
-	    <input type="radio" name="firmaAllFoDi" value="no" onChange="changeFirmenSelection(2);"> Firmenaufl&ouml;sungen<br>
+            <span class="data">
+              <h3>Type of data</h3>
+              <input id="firm_all" type="radio" name="firmaAllFoDi" value="all" checked/>
+              <label for="firm_all">Alle Firmen</label><br>
+              <input id="firm_new" type="radio" name="firmaAllFoDi" value="inception" />
+              <label for="firm_new">Firmengr&uuml;ndungen</label><br>
+              <input id="firm_old" type="radio" name="firmaAllFoDi" value="end" />
+              <label for="firm_old"> Firmenaufl&ouml;sungen</label>
+            </span>
+            <span class="render">
+              <h3>Render types</h3>
+              <input id="firm_pts" type="radio" name="renderType" value="points" checked />
+              <label for="firm_pts">Points</label><br>
+              <input id="firm_com" type="radio" name="renderType" value="com" />
+              <label for="firm_com">Center of mass</label>
+            </span>
           </div>
           <div class="noga">
             <h3>Noga categories</h3>
-            <a id="noga_all">Alle auswählen</a> | <a id="noga_none">Keine</a>
+            <span class="nogatype">
+              <input id="firm_no_noga" type="radio" name="noga" value="false" checked />
+              <label for="firm_no_noga">All (no category)</label><br>
+              <input id="firm_noga" type="radio" name="noga" value="true" />
+              <label for="firm_noga">Noga</label><br>
+            </span>
+            <a id="noga_all">Alle</a> | <a id="noga_none">None</a>
             <ul>
             </ul>
+            <small><i>Icons by <a href="http://icons8.com" target="_blank">icons8.com</a></i></small>
           </div>
         </div>
       </div>
@@ -68,10 +88,11 @@
               });
 
               var panel = new Panel({
+                "loadingYear" : 2013,
                 "noga" : noga,
                 "map" : map,
-                "firmen" : { "api" : fApi,
-                             "renderer" : fRend }
+                "firmenApi" : fApi,
+                "firmenRenderer" : fRend
               });
 
               // This will register the required event handlers

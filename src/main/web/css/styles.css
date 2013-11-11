@@ -7,6 +7,10 @@ ul {
     list-style-type: none;
 }
 
+label {
+    font-weight: normal;
+}
+
 /* path { */
 /*     fill: #000; */
 /*     fill-opacity: .7; */
@@ -45,31 +49,28 @@ ul {
 
 .panel_container {
     position: absolute;
-    width: 20px;
-    padding-top:80px;
-    height: 100%;
+    margin-left: 10px;
+    margin-top: 80px;
+    width: 28px;
+    height: 28px;
+    background-color: white;
     z-index: 9999;
-     /* background-image: url('../img/arrow.png');
+    background-image: url('../img/settings.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size:10px 40px; */
+    background-size:20px 20px;
+    border-radius: 4px;
+    border: solid gray 1px;
 }
 
 .panel_container > .controls {
     display:none;
-    width: 300px;
-    height: 100%;
+    width: 200px;
     padding-left: 4px;
     padding-bottom: 4px;
-    background-color: #efefef;
-    border-top: solid black 1px;
-    border-right: solid black 1px;
-    border-bottom: solid black 1px;
-    border-top-right-radius:2px;
-    border-bottom-right-radius:2px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-
+    background-color: white;
+    border: solid black 1px;
+    border-radius:4px;
 }
 
 .panel_container > .controls > .noga {
@@ -80,12 +81,11 @@ ul {
     margin: 0;
     padding: 0;
     width: 100px
-    overflow: hidden;
 }
 
 .panel_container > .controls > .noga img {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
 }
 
 .mapc {

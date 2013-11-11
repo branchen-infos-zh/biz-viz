@@ -60,10 +60,68 @@ function FirmenApi(data) {
         });
     }
 
-    this.getForYear = function(year) {
+    /**
+     * Determine whether or not address is valid for that year.
+     */
+    var addressInYear = function(year, adr) {
+        if(adr.date == null || adr.date.from == null) {
+            return false;
+        }
+
+        var from = parseInt(adr.date.from.substr(0, 5));
+        if(adr.date.to == null) {
+            return from <= year;
+        }
+
+        var to = parseInt(adr.date.to.substr(0, 5));
+        return from <= year && year <= to;
+    }
+
+    var getInception = function(year) {
         return _data.filter(function(elem) {
-            console.info(elem)
-            return true;
+            if(elem['inscription-date'] == null) {
+                return false;
+            }
+
+            var y = parseInt(elem['inscription-date'].substr(0, 5));
+            return y == year;
         });
+    }
+
+    var getEnd = function(year) {
+        return _data.filter(function(elem) {
+            if(elem['deletion-date'] == null) {
+                return false;
+            }
+
+            var y = parseInt(elem['deletion-date'].substr(0, 5));
+            return y == year;
+        });
+    }
+
+    var getAll = function(year) {
+        return _data.filter(function(elem) {
+            var as = elem.addresses;
+            if(as != null && as.length > 0) {
+                for(var i = 0; i < as.length; i++) {
+                    if(addressInYear(year, as[i])) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        });
+    }
+
+    this.forYear = function(spec) {
+        var year = spec.year;
+        var type = spec.type;
+        if(type == 'inception') {
+            return getInception(year);
+        } else if(type == 'end') {
+            return getEnd(year);
+        } else if(type == 'all') {
+            return getAll(year);
+        }
     }
 }
