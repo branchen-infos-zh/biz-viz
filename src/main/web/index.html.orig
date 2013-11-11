@@ -21,44 +21,10 @@
 <script type="text/javascript" src="dynamicdata.js"></script>
 <script type="text/javascript" src="utils.js"></script>
 <script type="text/javascript" src="gemeinden.js"></script>
-<script src="data/iface.js"></script>
 
-<script>
-    Loader.all(function(data) {
-    var firmen = new Firmen(data['firmen']);
-    var gemeinden = new Gemeinden(data['gemeinden']);
-    });
-
-    Loader.noga(function(data) {
-    console.info(data);
-    });
-</script>
 <title>OpenData HackNight -- biz -- Grundkarte</title>
-  </head>
-  <body>
 
-
-  </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<body onLoad="initNogaColors(); initMap(); showYearValue(2013); initGemeinden();">
-
-
-
-
+</head><body onLoad="initNogaColors(); initMap(); showYearValue(2013); initGemeinden();">
 
 
 <table id="maptable" width="100%">
@@ -66,41 +32,34 @@
 
   <table>
     <tr><td>
-        Verteilung f&uuml;r das Jahr <b><span id="yearValue">2013</span></b>
+	Verteilung f&uuml;r das Jahr <b><span id="yearValue">2013</span></b>
     </td></tr>
     <tr><td>
-        <input id="yearRange" type="range" min="1930" max="2013" value="2013" onChange="showYearValue(this.value);" />
+	<input id="yearRange" type="range" min="1930" max="2013" value="2013" onChange="showYearValue(this.value);" />
     </td></tr>
     <tr><td>
-        <input id="rangeButton" type="button" value="start" onClick="changeInterval()">
+	<input id="rangeButton" type="button" value="start" onClick="changeInterval()">
     </td></tr>
     <tr><td>
-        <input type="radio" name="firmaAllFoDi" value="no" checked onChange="changeFirmenSelection(0);">Alle Firmen<br>
-        <input type="radio" name="firmaAllFoDi" value="no" onChange="changeFirmenSelection(1);">Firmengr&uuml;ndungen<br>
-        <input type="radio" name="firmaAllFoDi" value="no" onChange="changeFirmenSelection(2);">Firmenaufl&ouml;sungen<br>
-    </td></tr>
-    <tr><td><hr></td></tr>
-    <tr><td>
-        <input type="radio" name="firmaAllFoDi" value="no" onChange="changeFirmenSelection(3);">Firmenumz&uuml;ge<br>
+	<input type="radio" name="firmaAllFoDi" value="no" checked onChange="changeFirmenSelection(0);">Alle Firmen<br>
+	<input type="radio" name="firmaAllFoDi" value="no" onChange="changeFirmenSelection(1);">Firmengr&uuml;ndungen<br>
+	<input type="radio" name="firmaAllFoDi" value="no" onChange="changeFirmenSelection(2);">Firmenaufl&ouml;sungen<br>
     </td></tr>
     <tr><td><hr></td></tr>
     <tr><td>
-        <input type="radio" name="nogayn" value="no" checked onChange="changeNogaSelection(false);">Alle Firmen<br>
-        <input type="radio" name="nogayn" value="yes" onChange="changeNogaSelection(true);">Nach NOGA<br>
+	<input type="radio" name="firmaAllFoDi" value="no" onChange="changeFirmenSelection(3);">Firmenumz&uuml;ge<br>
+    </td></tr>
+    <tr><td><hr></td></tr>
+    <tr><td>
+	<input type="radio" name="nogayn" value="no" checked onChange="changeNogaSelection(false);">Alle Firmen<br>
+	<input type="radio" name="nogayn" value="yes" onChange="changeNogaSelection(true);">Nach NOGA<br>
     </td></tr>
     <tr><td align="center" id="nogaSelA" title="Landwirtschaft" onClick="nogaDisp.toggle(this);">A <img src="img/tractor.png" width="20" height="20"></td></tr>
     <tr><td align="center" id="nogaSelB" title="Bergbau" onClick="nogaDisp.toggle(this);">B <img src="img/workers.png" width="20" height="20"></td></tr>
     <tr><td align="center" id="nogaSelC" title="Verarbeitendes Gewerbe, Herstellung von Waren" onClick="nogaDisp.toggle(this);">C <img src="img/bread.png" width="20" height="20"></td></tr>
-
-
-
     <tr><td align="center" id="nogaSelD" title="Energieversorgung" onClick="nogaDisp.toggle(this);">D <img src="img/sun.png" width="20" height="20"</td></tr>
-                                                                                                           <tr><td align="center" id="nogaSelE" title="Wasserversorgung" onClick="nogaDisp.toggle(this);">E <img src="img/water.png" width="20" height="20"></td></tr>
+    <tr><td align="center" id="nogaSelE" title="Wasserversorgung" onClick="nogaDisp.toggle(this);">E <img src="img/water.png" width="20" height="20"></td></tr>
     <tr><td align="center" id="nogaSelF" title="Baugewerbe" onClick="nogaDisp.toggle(this);">F <img src="img/hammer.png" width="20" height="20"></td></tr>
-
-
-
-
     <tr><td align="center" id="nogaSelG" title="Handel, Instandhaltung und Reparatur von Motorfahrzeugen" onClick="nogaDisp.toggle(this);">G <img src="img/automotive.png" width="20" height="20"></td></tr>
     <tr><td align="center" id="nogaSelH" title="Verkehr und Lagerei" onClick="nogaDisp.toggle(this);">H <img src="img/delivery_food.png" width="20" height="20"></td></tr>
     <tr><td align="center" id="nogaSelI" title="Gastgewerbe, Beherbergung" onClick="nogaDisp.toggle(this);">I <img src="img/hotel.png" width="20" height="20"></td></tr>

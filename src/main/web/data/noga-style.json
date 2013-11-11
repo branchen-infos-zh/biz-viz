@@ -1,4 +1,9 @@
 [
+    {   "code":"_0",
+        "title":"Nicht zugeordnet",
+        "colour": "#000000",
+        "icon" : ""
+    },
     {
         "code":"A0",
         "title" : "Landwirtschaft",
@@ -32,7 +37,7 @@
     {
         "code":"F0",
         "title" : "Baugewerbe",
-        "colour" : "#FF9900"
+        "colour" : "#FF9900",
         "icon" : "hammer.png"
     },
     {
@@ -73,7 +78,7 @@
     },
     {
         "code":"M0",
-        "title" : "Erbringung von freiberuflichen, wissenschaftlichen und technischen Dienstleistungen"
+        "title" : "Erbringung von freiberuflichen, wissenschaftlichen und technischen Dienstleistungen",
         "colour": "#8F8FFF",
         "icon" : "physics.png"
     },

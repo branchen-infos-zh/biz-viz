@@ -1,41 +1,84 @@
 <!DOCTYPE html>
 <html><head>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-<meta content="yes" name="apple-mobile-web-app-capable">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link type="text/css" href="http://cdn.leafletjs.com/leaflet-0.6/leaflet.css" rel="stylesheet">
-<link rel="stylesheet" href="lib/Control.OSMGeocoder.css" />
+    <title>OpenData HackNight -- biz -- Grundkarte</title>
 
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/proj4js/1.1.0/proj4js-compressed.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/proj4js/1.1.0/defs/EPSG21781.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/proj4js/1.1.0/proj4js-compressed.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/proj4js/1.1.0/defs/EPSG21781.js"></script>
+    <script src="http://www.gis.zh.ch/dokus/opendata/leaflet/lib/leaflet.js"></script>
+    <script src="http://www.gis.zh.ch/dokus/opendata/leaflet/lib/kartena-proj4leaflets.js"></script>
 
-<script type="text/javascript" src="http://www.gis.zh.ch/dokus/opendata/leaflet/lib/leaflet.js"></script>
-<script type="text/javascript" src="http://www.gis.zh.ch/dokus/opendata/leaflet/lib/kartena-proj4leaflets.js"></script>
+    <script src="lib/Control.OSMGeocoder.js"></script>
+    <script src="lib/d3.v3.min.js"></script>
 
-<script type="text/javascript" src="lib/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="lib/Control.OSMGeocoder.js"></script>
-<script type="text/javascript" src="lib/d3.v3.min.js"></script>
+    <script src="js/maputil.js"></script>
+    <script src="js/gemeinden.js"></script>
+    <script src="js/panel.js"></script>
+    <script src="js/firmen.js"></script>
+    <script src="js/renderer.js"></script>
 
-<script type="text/javascript" src="maputil.js"></script>
-<script type="text/javascript" src="dynamicdata.js"></script>
-<script type="text/javascript" src="utils.js"></script>
-<script type="text/javascript" src="gemeinden.js"></script>
-
-<script src="data/iface.js"></script>
-
-<title>OpenData HackNight -- biz -- Grundkarte</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/Control.OSMGeocoder.css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6/leaflet.css" />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-
+    <div class="content">
+      <div class="panel_play">
+        <span>
+          Year: <span id="panel_yearValue">2013</span>
+          <input id="panel_yearRange" type="range" min="1930" max="2013" value="2013">
+          <input id="panel_playButton" type="button" value="Start">
+        </span>
+      </div>
+      <div class="panel_container">
+        <div class="controls">
+          <div class="defaults">
+            <input type="radio" name="firmaAllFoDi" value="no" checked onChange="changeFirmenSelection(0);"> Alle Firmen<br>
+	    <input type="radio" name="firmaAllFoDi" value="no" onChange="changeFirmenSelection(1);"> Firmengr&uuml;ndungen<br>
+	    <input type="radio" name="firmaAllFoDi" value="no" onChange="changeFirmenSelection(2);"> Firmenaufl&ouml;sungen<br>
+          </div>
+          <div class="noga">
+            <h3>Noga categories</h3>
+            <a id="noga_all">Alle auswählen</a> | <a id="noga_none">Keine</a>
+            <ul>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="mapc">
+        <div id="map"></div>
+      </div>
+    </div>
     <script>
-      Loader.all(function(data) {
-      var firmen = new Firmen(data['firmen']);
-      var gemeinden = new Gemeinden(data['gemeinden']);
-      });
+      $(function() {
+          var map = new Map();
+          map.initialize();
 
-      Loader.noga(function(data) {
-      console.info(data);
+          //initGemeinden();
+          Loader.withFirmen(function(firms) {
+          Loader.withNoga(function(noga) {
+              var fApi = new FirmenApi(firms);
+              var fRend = new FirmenRenderer({
+                "noga" : noga
+              });
+
+              var panel = new Panel({
+                "noga" : noga,
+                "map" : map,
+                "firmen" : { "api" : fApi,
+                             "renderer" : fRend }
+              });
+
+              // This will register the required event handlers
+              // for interacting with the panel
+              panel.initialize();
+          });
+          });
       });
     </script>
   </body>

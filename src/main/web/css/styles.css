@@ -1,0 +1,102 @@
+
+h3 {
+    font-size: 12pt;
+}
+
+ul {
+    list-style-type: none;
+}
+
+/* path { */
+/*     fill: #000; */
+/*     fill-opacity: .7; */
+/*     stroke: #fff; */
+/*     stroke-width: 1px; */
+/* } */
+
+/* path:hover { */
+/*     fill: brown; */
+/*     fill-opacity: .7; */
+/* } */
+
+.content {
+    height: 700px;
+}
+
+.panel_play {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    width: 265px;
+    padding: 4px;
+    background-color: white;
+    z-index: 8000;
+    border:1px solid gray;
+    border-radius:5px;
+}
+
+.panel_play span {
+    vertical-align: middle;
+}
+
+.panel_play input {
+    vertical-align: middle;
+}
+
+.panel_container {
+    position: absolute;
+    width: 20px;
+    padding-top:80px;
+    height: 100%;
+    z-index: 9999;
+     /* background-image: url('../img/arrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:10px 40px; */
+}
+
+.panel_container > .controls {
+    display:none;
+    width: 300px;
+    height: 100%;
+    padding-left: 4px;
+    padding-bottom: 4px;
+    background-color: #efefef;
+    border-top: solid black 1px;
+    border-right: solid black 1px;
+    border-bottom: solid black 1px;
+    border-top-right-radius:2px;
+    border-bottom-right-radius:2px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+}
+
+.panel_container > .controls > .noga {
+
+}
+
+.panel_container > .controls > .noga ul {
+    margin: 0;
+    padding: 0;
+    width: 100px
+    overflow: hidden;
+}
+
+.panel_container > .controls > .noga img {
+    width: 12px;
+    height: 12px;
+}
+
+.mapc {
+    position:absolute;
+    float:rigth;
+    width:100%;
+    height:100%;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
