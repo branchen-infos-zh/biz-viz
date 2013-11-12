@@ -74,7 +74,7 @@ function FirmenRenderer(config) {
                              obj.quality.total +
                              " data points considered (" +
                              obj.quality.in_percentage +
-                             ")"
+                             ") [" + obj.noga + "]"
                             );
 
             l.addLayer(circle);
