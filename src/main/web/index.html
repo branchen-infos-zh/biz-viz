@@ -15,13 +15,20 @@
     <script src="lib/Control.OSMGeocoder.js"></script>
     <script src="lib/d3.v3.min.js"></script>
 
+    <!-- Comment the two scripts when you run the website from a webserver as
+         the data will then be loaded on request. -->
+    <script src="data/firmen-static.js"></script>
+    <script src="data/gemeinden-static.js"></script>
+    <script src="data/noga-style-static.js"></script>
+
+    <script src="js/loader.js"></script>
     <script src="js/maputil.js"></script>
     <script src="js/gemeinden.js"></script>
     <script src="js/panel.js"></script>
     <script src="js/firmen.js"></script>
     <script src="js/renderer.js"></script>
 
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="lib/Control.OSMGeocoder.css" />
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6/leaflet.css" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -80,13 +87,13 @@
           var map = new Map();
           map.initialize();
 
-          initGemeinden(map.getMap());
-
-          Loader.withFirmen(function(firms) {
-          Loader.withNoga(function(noga) {
-              var fApi = new FirmenApi(firms);
+          Loaderr.withFirmen(function(firmen) {
+          Loaderr.withGemeinden(function(gemeinden) {
+          Loaderr.withNoga(function(noga) {
+              initGemeinden(map.getMap(), gemeinden);
+              var fApi = new FirmenApi(firmen);
               var fRend = new FirmenRenderer({
-                "noga" : noga
+                 "noga" : noga
               });
 
               var panel = new Panel({
@@ -100,6 +107,7 @@
               // This will register the required event handlers
               // for interacting with the panel
               panel.initialize();
+          });
           });
           });
       });

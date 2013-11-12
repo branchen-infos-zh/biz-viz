@@ -186,25 +186,3 @@ function Panel(config) {
     }
 
 }
-
-/**
- * Interface to load the data from a resource.
- */
-function Loader() {
-
-}
-
-Loader.json = function(file, cb) {
-    $.getJSON(file, cb);
-}
-
-/**
- * This will the firm data.
- */
-Loader.withFirmen = function(cb) {
-    Loader.json("data/firmen.json", cb);
-}
-
-Loader.withNoga = function(cb) {
-    Loader.json("data/noga-style.json", cb);
-}

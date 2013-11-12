@@ -3,11 +3,11 @@ var svgGemeinden = null;
 var g;
 
 
-function initGemeinden(map) {
+function initGemeinden(map, collection) {
     svgGemeinden = d3.select(map.getPanes().overlayPane).append("svg");
     g = svgGemeinden.append("g").attr("class", "leaflet-zoom-hide");
 
-    d3.json("data/gemeinden.json", function(collection) {
+    //d3.json("data/gemeinden.json", function(collection) {
         var transform = d3.geo.transform({point: projectPoint});
         var path = d3.geo.path().projection(transform);
         var bounds = path.bounds(collection);
@@ -38,5 +38,5 @@ function initGemeinden(map) {
             var point = map.latLngToLayerPoint(new L.LatLng(y, x));
             this.stream.point(point.x, point.y);
         }
-    });
+   // });
 }
