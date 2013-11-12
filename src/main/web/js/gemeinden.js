@@ -3,7 +3,7 @@ var svgGemeinden = null;
 var g;
 
 
-function initGemeinden() {
+function initGemeinden(map) {
     svgGemeinden = d3.select(map.getPanes().overlayPane).append("svg");
     g = svgGemeinden.append("g").attr("class", "leaflet-zoom-hide");
 
@@ -16,7 +16,7 @@ function initGemeinden() {
             .data(collection.features)
             .enter().append("path");
 
-        window.map.on("viewreset", resetGemeinden);
+        map.on("viewreset", resetGemeinden);
         resetGemeinden();
 
 

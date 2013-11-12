@@ -1,3 +1,5 @@
+// TODO: this code need refactoring...
+
 /**
  * The biz panel.
  */
@@ -6,6 +8,9 @@ function Panel(config) {
 
     var config = config;
     var map = config.map;
+
+    // Whether or not rendering is enabled
+    var rendering = true;
 
     // The timeout callback
     var playTimeoutFn = null;
@@ -20,12 +25,13 @@ function Panel(config) {
     var generateNogaControl = function() {
         for(var i = 0; i < config.noga.length; i++) {
             var n = config.noga[i];
+            var title = n.title_short != null ? n.title_short : n.title;
             $(".panel_container > .controls > .noga ul").append(
                 '<li style="background-color:' + n.colour + ';">' +
-                    '<input type="checkbox" value="' + n.code + '"/>&nbsp' +
+                    '<input type="checkbox" value="' + n.code + '"/>&nbsp;&nbsp;' +
                     //'<span style="background-color:' + n.colour + ';">' +
-                    '<img src="img/' + n.icon + '"/> ' +
-                    n.code +
+                    '<img src="img/' + n.icon + '"/>&nbsp;&nbsp;' +
+                    n.code + ' ' + title +
                     //'</span>' +
                 '</li>'
             );
@@ -69,16 +75,6 @@ function Panel(config) {
             });
         });
 
-        // Handle click event...
-        $(".panel_container > .controls > .noga ul li input").each(function(i, elem) {
-            $(elem).change(function(e) {
-                if ($(this).is(':checked')) {
-                    // do something
-                } else {
-                    // don't do
-                }
-            });
-        });
         $("#firm_no_noga").click();
 
         // Now the handlers that will update the data
@@ -87,9 +83,29 @@ function Panel(config) {
                 _this.prepareAndRender();
             });
         });
+        $(".panel_container > .controls > .defaults > .render input").each(function(i, elem) {
+            $(elem).click(function() {
+                _this.prepareAndRender();
+            });
+        });
+
+        // $(".panel_container > .controls > .noga ul li input").each(function(i, elem) {
+        //     $(elem).change(function(e) {
+        //         _this.prepareAndRender();
+        //     });
+        // });
+
+        $("#noga_update").click(function() {
+            _this.prepareAndRender();
+        });
+
     }
 
     this.prepareAndRender = function() {
+        if(!rendering) {
+            return;
+        }
+
         // The type of data to render
         var dataType = $(".panel_container > .controls > .defaults .data :checked").val();
         // How to render the data
@@ -106,18 +122,25 @@ function Panel(config) {
         };
 
         // Retrieve & render data
-        var data = config.firmenApi.forYear(conf);
+        var data = null;
         if(renderType == "points") {
-            config.firmenRenderer.points(map, data, conf);
+            config.firmenRenderer.points(
+                map,
+                config.firmenApi.pointsForYear(conf),
+                conf
+            );
         } else if(renderType == "com") {
-            config.firmenRenderer.centerOfMass(map, data, conf);
+            config.firmenRenderer.centerOfMass(
+                map,
+                config.firmenApi.centerOfMassForYear(conf),
+                conf
+            );
         }
     }
 
     this.initialize = function() {
         elems.year.value = config.loadingYear;
         generateNogaControl();
-
         bindEventHandlers();
         _this.prepareAndRender();
     }

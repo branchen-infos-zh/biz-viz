@@ -19,6 +19,7 @@
     {
         "code":"C0",
         "title" : "Verarbeitendes Gewerbe, Herstellung von Waren",
+        "title_short" : "Herstellung von Waren",
         "colour" : "#FFC04D",
         "icon" : "bread.png"
     },
@@ -55,42 +56,49 @@
     {
         "code":"I0",
         "title" : "Gastgewerbe, Beherbergung",
+        "title_short" : "Gastgewerbe",
         "colour" : "#FF33CC",
         "icon" : "hotel.png"
     },
     {
         "code":"J0",
         "title" : "Information und Kommunikation",
+        "title_short" : "Info. & Komm.",
         "colour" : "#43BFBF",
         "icon" : "notebook.png"
     },
     {
         "code":"K0",
         "title" : "Erbringung von Finanz- und Versicherungsdienstleistungen",
+        "title_short" : "Fin. & Vers.",
         "colour" : "#00FF99",
         "icon" : "banknotes.png"
     },
     {
         "code":"L0",
         "title" : "Grundstücks und Wohnungswesen",
+        "title_short" : "Grundsück-/Wohnungswesen",
         "colour" : "#C7CB77",
         "icon" : "home.png"
     },
     {
         "code":"M0",
         "title" : "Erbringung von freiberuflichen, wissenschaftlichen und technischen Dienstleistungen",
+        "title_short": "Freiberufliche Dienstl.",
         "colour": "#8F8FFF",
         "icon" : "physics.png"
     },
     {
         "code":"N0",
         "title" : "Erbringung von sonstigen wirtschaftlichen Dienstleistungen",
+        "title_short" : "Sonst. wirtsch. Dienstl.",
         "colour" : "#FFFF8F",
         "icon" : "online_support.png"
     },
     {
         "code":"O0",
         "title" : "Öffentliche Verwaltung, Verteidigung; Sozialversicherung",
+        "title_short" : "Verw., Verteid., Sozialvers.",
         "colour" : "#CCFFCC",
         "icon" : "police.png"
     },
@@ -121,12 +129,14 @@
     {
         "code":"T0",
         "title" : "Private Haushalte mit Hauspersonal; Herstellung von Waren und Erbringung von Dienstleistungen durch private Haushalte für den Eigenbedarf ohne ausgeprägten Schwerpunkt",
+        "title_short" : "Priv. Haushalte.",
         "colour" : "#00FF00",
         "icon" : "lamp.png"
     },
     {
         "code":"U0",
         "title": "Exterritoriale Organisationen und Körperschaften",
+        "title_short" : "Extraterr. Org.",
         "colour" : "#FF00FF",
         "icon" : "reddit.png"
     }

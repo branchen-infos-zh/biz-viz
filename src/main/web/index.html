@@ -61,7 +61,8 @@
               <input id="firm_no_noga" type="radio" name="noga" value="false" checked />
               <label for="firm_no_noga">All (no category)</label><br>
               <input id="firm_noga" type="radio" name="noga" value="true" />
-              <label for="firm_noga">Noga</label><br>
+              <label for="firm_noga">Noga</label>
+              <a id="noga_update">Aktualisieren</a><br>
             </span>
             <a id="noga_all">Alle</a> | <a id="noga_none">None</a>
             <ul>
@@ -79,7 +80,8 @@
           var map = new Map();
           map.initialize();
 
-          //initGemeinden();
+          initGemeinden(map.getMap());
+
           Loader.withFirmen(function(firms) {
           Loader.withNoga(function(noga) {
               var fApi = new FirmenApi(firms);

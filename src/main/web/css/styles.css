@@ -11,12 +11,15 @@ label {
     font-weight: normal;
 }
 
-/* path { */
-/*     fill: #000; */
-/*     fill-opacity: .7; */
-/*     stroke: #fff; */
-/*     stroke-width: 1px; */
-/* } */
+path {
+    fill-opacity: .0;
+    stroke: gray;
+    stroke-width: 1px;
+}
+
+.leaflet-clickable {
+    fill-opacity: .8;
+}
 
 /* path:hover { */
 /*     fill: brown; */
@@ -71,6 +74,8 @@ label {
     background-color: white;
     border: solid black 1px;
     border-radius:4px;
+    overflow-y: scroll;
+    height: 800px;
 }
 
 .panel_container > .controls > .noga {
@@ -80,7 +85,11 @@ label {
 .panel_container > .controls > .noga ul {
     margin: 0;
     padding: 0;
-    width: 100px
+    margin-right: 5px;
+}
+
+.panel_container > .controls > .noga ul li {
+    padding-left: 5px;
 }
 
 .panel_container > .controls > .noga img {
